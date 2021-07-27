@@ -15,8 +15,12 @@ class CollectionFiltersForm extends HTMLElement {
   onSubmitHandler(event) {
     event.preventDefault();
     const formData = new FormData(event.target.closest('form'));
-    const searchParams = new URLSearchParams(formData).toString();
-    this.renderPage(searchParams, event);
+    const searchParams = new URLSearchParams(location.search);
+    for (const [key, value] of new URLSearchParams(formData)) {
+      searchParams.append(key, value);
+    }
+    searchParams.delete('page');
+    this.renderPage(searchParams.toString(), event);
   }
 
   onActiveFilterClick(event) {
