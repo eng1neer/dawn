@@ -17,6 +17,7 @@ class CollectionFiltersForm extends HTMLElement {
     const formData = new FormData(event.target.closest('form'));
     const searchParams = new URLSearchParams(location.search);
     for (const [key, value] of new URLSearchParams(formData)) {
+      debugger;
       searchParams.set(key, value);
     }
     searchParams.delete('page');
